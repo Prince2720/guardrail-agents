@@ -8,7 +8,7 @@ actually buys: attack success, unauthorized tool executions, false positives, la
 
 **Live demo:** _add your URL here_ &nbsp;|&nbsp; try the same attack with the firewall off and on.
 
-![Demo: the same attack, with and without the firewall](docs/demo.png)
+
 
 ## Architecture
 
