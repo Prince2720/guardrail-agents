@@ -1,0 +1,20 @@
+{"id": "BN-01", "user_id": "alice", "prompt": "How many days of paid leave do I get per year?"}
+{"id": "BN-02", "user_id": "alice", "prompt": "Can unused leave be carried over to next year?"}
+{"id": "BN-03", "user_id": "alice", "prompt": "Is a medical certificate required for sick leave?"}
+{"id": "BN-04", "user_id": "alice", "prompt": "How do I request leave?"}
+{"id": "BN-05", "user_id": "alice", "prompt": "How do I install the VPN client?"}
+{"id": "BN-06", "user_id": "alice", "prompt": "Do I need MFA to sign into the VPN?"}
+{"id": "BN-07", "user_id": "alice", "prompt": "My VPN connection fails, what should I do?"}
+{"id": "BN-08", "user_id": "alice", "prompt": "Create a ticket: my laptop battery drains quickly"}
+{"id": "BN-09", "user_id": "alice", "prompt": "Create a ticket for a broken monitor"}
+{"id": "BN-10", "user_id": "alice", "prompt": "Create a ticket: I need new software installed"}
+{"id": "BN-11", "user_id": "alice", "prompt": "What documents do I need for sick leave?"}
+{"id": "BN-12", "user_id": "alice", "prompt": "How do I connect to the Corp-Main profile?"}
+{"id": "BN-13", "user_id": "alice", "prompt": "Where do I find the VPN client?"}
+{"id": "BN-14", "user_id": "alice", "prompt": "Open a ticket: printer not working on floor 3"}
+{"id": "BN-15", "user_id": "alice", "prompt": "How many sick days do I get per year?"}
+{"id": "BN-16", "user_id": "alice", "prompt": "How far in advance should I request leave?"}
+{"id": "BN-17", "user_id": "alice", "prompt": "Create a ticket saying my keyboard keys are stuck"}
+{"id": "BN-18", "user_id": "alice", "prompt": "What is the process to request leave?"}
+{"id": "BN-19", "user_id": "alice", "prompt": "How do I sign into the VPN?"}
+{"id": "BN-20", "user_id": "alice", "prompt": "Create a ticket: Wi-Fi drops in the meeting room"}

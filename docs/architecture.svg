@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560" font-family="Segoe UI, Arial, sans-serif" font-size="13">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#475467"/></marker></defs>
+<rect width="920" height="560" fill="#ffffff"/>
+<text x="20" y="52" fill="#475467" font-size="12">Every layer fails closed (a guard that errors blocks) and can be switched off per request, which is how the results are measured.</text>
+<text x="20" y="30" font-size="18" font-weight="bold" fill="#101828">Guardrail Agents: a firewall at every trust boundary</text>
+
+<!-- user -->
+<rect x="20" y="215" width="110" height="60" rx="10" fill="#f2f4f7" stroke="#98a2b3"/><text x="75" y="242" text-anchor="middle" font-weight="bold">User</text><text x="75" y="260" text-anchor="middle" fill="#475467">web / webhook</text>
+
+<!-- ingress -->
+<rect x="165" y="195" width="150" height="100" rx="10" fill="#e8f0ff" stroke="#3b5bdb" stroke-width="2"/>
+<text x="240" y="218" text-anchor="middle" font-weight="bold" fill="#1d3fb3">1  INGRESS</text>
+<text x="240" y="238" text-anchor="middle" fill="#344054">normalize, PII redact</text><text x="240" y="255" text-anchor="middle" fill="#344054">topic rails, heuristics</text><text x="240" y="272" text-anchor="middle" fill="#344054">Prompt Guard 2</text>
+
+<!-- supervisor -->
+<rect x="350" y="215" width="120" height="60" rx="10" fill="#f2f4f7" stroke="#667085"/><text x="410" y="242" text-anchor="middle" font-weight="bold">Supervisor</text><text x="410" y="260" text-anchor="middle" fill="#475467">routes the request</text>
+
+<!-- knowledge path -->
+<rect x="520" y="95" width="130" height="60" rx="10" fill="#f2f4f7" stroke="#667085"/><text x="585" y="122" text-anchor="middle" font-weight="bold">Knowledge agent</text><text x="585" y="140" text-anchor="middle" fill="#475467">no tools at all</text>
+<rect x="700" y="80" width="200" height="90" rx="10" fill="#fff4e5" stroke="#dc6803" stroke-width="2"/>
+<text x="800" y="102" text-anchor="middle" font-weight="bold" fill="#b54708">3  CONTEXT</text>
+<text x="800" y="122" text-anchor="middle" fill="#344054">strip hidden content</text><text x="800" y="139" text-anchor="middle" fill="#344054">quarantine poisoned chunks</text><text x="800" y="156" text-anchor="middle" fill="#475467">(documents + tool output)</text>
+
+<!-- action path -->
+<rect x="520" y="335" width="130" height="60" rx="10" fill="#f2f4f7" stroke="#667085"/><text x="585" y="362" text-anchor="middle" font-weight="bold">Action agent</text><text x="585" y="380" text-anchor="middle" fill="#475467">picks a tool or "none"</text>
+<rect x="700" y="320" width="200" height="100" rx="10" fill="#e6f6ee" stroke="#12805c" stroke-width="2"/>
+<text x="800" y="343" text-anchor="middle" font-weight="bold" fill="#0b6b4a">4  TOOLS</text>
+<text x="800" y="363" text-anchor="middle" fill="#344054">allowlist, schema, roles</text><text x="800" y="380" text-anchor="middle" fill="#344054">human approval for</text><text x="800" y="397" text-anchor="middle" fill="#344054">reset_access</text>
+
+<!-- egress -->
+<rect x="350" y="445" width="300" height="80" rx="10" fill="#fde8e8" stroke="#c4321c" stroke-width="2"/>
+<text x="500" y="468" text-anchor="middle" font-weight="bold" fill="#a12814">5  EGRESS</text>
+<text x="500" y="488" text-anchor="middle" fill="#344054">prompt leak, DLP (salaries, emails, secrets)</text><text x="500" y="505" text-anchor="middle" fill="#344054">fake "I did it" claims, ungrounded numbers</text>
+
+<!-- audit -->
+<rect x="690" y="445" width="210" height="80" rx="10" fill="#f4ebff" stroke="#7a5af8" stroke-width="2"/>
+<text x="795" y="468" text-anchor="middle" font-weight="bold" fill="#5925dc">Audit log (hash chain)</text>
+<text x="795" y="488" text-anchor="middle" fill="#344054">append-only, tamper-evident</text><text x="795" y="505" text-anchor="middle" fill="#344054">metrics, dashboard, review</text>
+
+<!-- arrows -->
+<path d="M130 245H163" stroke="#475467" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M315 245H348" stroke="#475467" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M470 235L520 140" stroke="#475467" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M470 255L520 360" stroke="#475467" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M700 125H652" stroke="#475467" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M700 365H652" stroke="#475467" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<path d="M585 155V215H500V443" stroke="#475467" stroke-width="2" fill="none" marker-end="url(#a)" stroke-dasharray="5 4"/>
+<path d="M585 395V420H520V443" stroke="#475467" stroke-width="2" fill="none" marker-end="url(#a)" stroke-dasharray="5 4"/>
+<path d="M652 485H688" stroke="#7a5af8" stroke-width="2" fill="none" marker-end="url(#a)" stroke-dasharray="3 3"/>
+<path d="M350 500H75V277" stroke="#475467" stroke-width="2" fill="none" marker-end="url(#a)"/>
+<text x="95" y="520" fill="#475467">answer (or a safe fallback)</text>
+
+</svg>

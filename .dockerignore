@@ -1,0 +1,11 @@
+.env
+.venv/
+.git/
+__pycache__/
+*.pyc
+.pytest_cache/
+tests/
+redteam/
+audit.db
+.llm_cache.jsonl
+CODEBOOK.md

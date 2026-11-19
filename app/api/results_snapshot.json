@@ -1,0 +1,15 @@
+{
+  "model": "mock openai/gpt-oss-20b",
+  "attacks": 75,
+  "benign": 30,
+  "base": {
+    "asr": 53.3,
+    "unauth": 85.7
+  },
+  "full": {
+    "asr": 13.3,
+    "unauth": 0.0,
+    "fp": 0,
+    "ci": "7 to 23%"
+  }
+}

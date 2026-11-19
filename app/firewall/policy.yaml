@@ -1,0 +1,60 @@
+# Policy-as-config. Edit this file, not the code.
+# NOTE: in production the user id must come from verified auth (SSO/JWT), never from the request body.
+default_role: guest          # unknown users get no tool access
+
+users:
+  alice: employee
+  mallory: employee          # the attacker in our red-team suite: an ordinary employee
+  bob: hr
+  carol: it_admin
+
+tools:
+  create_ticket:
+    allowed_roles: [employee, hr, it_admin]
+    args:
+      title:       {type: str, required: true,  max_len: 200}
+      description: {type: str, required: false, max_len: 1000}
+
+  lookup_employee:
+    allowed_roles: [employee, hr, it_admin]
+    scope: {employee: self}          # employees may only look up themselves
+    deny_fields: {it_admin: [salary]}  # IT can see records but never salaries
+    args:
+      name: {type: str, required: true, max_len: 32, pattern: "[A-Za-z0-9_.-]+"}
+
+  reset_access:
+    allowed_roles: [it_admin]
+    requires_approval: true          # human must approve via /approvals
+    args:
+      username: {type: str, required: true, max_len: 32, pattern: "[A-Za-z0-9_.-]+"}
+
+# ---------------- Layer 1: INGRESS ----------------
+ingress:
+  max_chars: 2000
+  heuristic_block_score: 0.8     # regex/pattern risk score at or above this => block
+  injection_threshold: 0.8       # Prompt Guard 2 score at or above this => block
+  blocked_topics:
+    - {name: malware,        pattern: "(write|create|build|generate|code).{0,40}(malware|ransomware|keylogger|virus|trojan|exploit)"}
+    - {name: bypass_security, pattern: "(bypass|disable|turn off|get around|defeat).{0,30}(mfa|2fa|two-factor|security|antivirus|firewall|dlp|audit)"}
+    - {name: credential_theft, pattern: "(steal|dump|harvest|phish).{0,30}(credentials?|passwords?|tokens?|cookies)"}
+
+# ---------------- Layer 5: EGRESS ----------------
+egress:
+  fallback: "I couldn't verify that answer against company records, so I've withheld it. It has been logged for review."
+  prompt_canaries:                    # fragments of our own system prompts; must never appear in an answer
+    - "internal IT/HR helpdesk assistant"
+    - "knowledge or action"
+    - "Reply ONLY with JSON"
+    - "You route helpdesk requests"
+    - "You choose which tool to run"
+  protected:                          # who may SEE each field of an employee record
+    salary: {viewers: [hr], self_ok: true}
+    email:  {viewers: [hr, it_admin], self_ok: true}
+  secret_fields: [temp_password, password, token, secret]
+  grounding: {enabled: true}          # numbers / domains in an answer must appear in its sources
+  action_claims: true                 # "I have reset X" is blocked unless that tool really ran
+
+# ---------------- Layer 3: CONTEXT (retrieved documents + tool outputs) ----------------
+context:
+  block_score: 0.8          # pattern risk score at or above this => quarantine the chunk
+  injection_threshold: 0.8  # Prompt Guard 2 score at or above this => quarantine the chunk

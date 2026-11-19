@@ -1,0 +1,14 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+audit.db
+audit.jsonl
+.llm_cache.jsonl
+redteam/results/*.partial.json
+redteam/results/audit_*.db
+
+*.mp4
+*.mov
+*.mkv
+*.webm
